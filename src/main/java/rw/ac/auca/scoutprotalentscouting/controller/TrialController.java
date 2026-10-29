@@ -29,6 +29,12 @@ public class TrialController {
         || message.equals("The scout with that id does not exist")){
             return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
         }
+        if(message.equals("Trial date cannot be in the past")){
+            return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        }
+        if(message.equals("Scout already runs a trial on that date")){
+            return new ResponseEntity<>(message, HttpStatus.CONFLICT);
+        }
         return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
     }
 
@@ -48,6 +54,18 @@ public class TrialController {
         LocalDate endDate = LocalDate.parse(end);
 
         return new ResponseEntity<>(trialServ.findBetween(startDate, endDate), HttpStatus.OK);
+    }
+
+    @PatchMapping(value ="/{id}/status")
+    public ResponseEntity<?>changeStatus(@PathVariable UUID id, @RequestParam TrialStatus status){
+        String message = trialServ.changeStatus(id, status);
+        if (message.equals("The trial with that id does not exist")){
+            return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+        }
+        if(message.startsWith("Cannot change status")){
+            return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")

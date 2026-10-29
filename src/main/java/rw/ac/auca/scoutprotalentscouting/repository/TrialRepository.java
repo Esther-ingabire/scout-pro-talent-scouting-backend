@@ -14,4 +14,7 @@ public interface TrialRepository extends JpaRepository<Trial, UUID> {
     List<Trial> findByStatusOrderByTrialDateAsc(TrialStatus status);
 
     List<Trial> findByTrialDateBetweenOrderByTrialDateAsc(LocalDate start, LocalDate end);
+
+    boolean existsByScoutIdAndTrialDateAndStatusNot(UUID scoutId, LocalDate trialDate, TrialStatus status);
+
 }

@@ -40,6 +40,32 @@ public class ScoutController {
         return new ResponseEntity<>(scoutServ.findBySportName(name), HttpStatus.OK);
     }
 
+    @PutMapping(value = "/{scoutId}/sports/{sportId}")
+    public ResponseEntity<?> addSport(@PathVariable UUID scoutId, @PathVariable UUID sportId){
+        String message = scoutServ.addSport(scoutId, sportId);
+        if(message.equals("The scout with that id does not exist")
+        || message.equals("That sport does not exist")){
+            return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+        }
+        if(message.equals("The scout already has that sport")){
+            return new ResponseEntity<>(message, HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
+
+    @PatchMapping(value = "/{scoutId}/zone")
+    public ResponseEntity<?>changeZone(@PathVariable UUID scoutId, @RequestParam int zoneNumber){
+        String message = scoutServ.changeZone(scoutId, zoneNumber);
+        if(message.equals("The scout with that id does not exist")
+        || message.equals("The zone with that zoneNumber does not exist")){
+            return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+        }
+        if (message.equals("That zone is taken by another scout")){
+            return new ResponseEntity<>(message, HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
+
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<?> getScoutById(@PathVariable UUID id){

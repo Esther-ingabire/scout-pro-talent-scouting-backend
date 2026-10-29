@@ -36,11 +36,15 @@ public class TrialService {
         if(scout == null){
             return "The scout with that id does not exist";
         }
+        if(trial.getTrialDate().isBefore(LocalDate.now())){
+            return "Trial date cannot be in the past";
+        }
+        if(trialRepo.existsByScoutIdAndTrialDateAndStatusNot(scout.getId(),trial.getTrialDate(), TrialStatus.WITHDRAWN)){
+            return "Scout already runs a trial on that date";
+        }
         trial.setAthlete(athlete);
         trial.setScout(scout);
-        if(trial.getStatus() == null){
-            trial.setStatus(TrialStatus.INVITED);
-        }
+        trial.setStatus(TrialStatus.INVITED);
         trialRepo.save(trial);
         return "Trial saved successfully";
     }
@@ -60,7 +64,7 @@ public class TrialService {
 
         existing.setTrialDate(trial.getTrialDate());
         existing.setVenue(trial.getVenue());
-        existing.setStatus(trial.getStatus());
+
         if(trial.getAthlete() != null && trial.getAthlete().getId() != null){
             Athlete athlete = athleteRepo.findById(trial.getAthlete().getId()).orElse(null);
             if(athlete == null){
@@ -95,4 +99,33 @@ public class TrialService {
     public List<Trial> findBetween(LocalDate start, LocalDate end){
         return trialRepo.findByTrialDateBetweenOrderByTrialDateAsc(start, end);
     }
+
+    public String changeStatus(UUID id, TrialStatus status){
+        Trial trial = trialRepo.findById(id).orElse(null);
+        if(trial == null){
+            return "The trial with that id does not exist";
+        }
+        TrialStatus current = trial.getStatus();
+        boolean allowed = false;
+        if(current == TrialStatus.INVITED
+            && (status == TrialStatus.REGISTERED || status == TrialStatus.WITHDRAWN)){
+            allowed = true;
+        }
+
+        if(current == TrialStatus.REGISTERED && (status == TrialStatus.ASSESSED || status == TrialStatus.WITHDRAWN)){
+            allowed = true;
+        }
+
+        if(!allowed){
+            return "Cannot change status from " + current + " to " + status;
+        }
+
+        trial.setStatus(status);
+        trialRepo.save(trial);
+        return "Trial status updated successfully";
+
+
+    }
+
+
 }

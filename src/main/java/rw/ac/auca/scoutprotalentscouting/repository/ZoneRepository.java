@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import rw.ac.auca.scoutprotalentscouting.model.Zone;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -13,4 +14,6 @@ public interface ZoneRepository extends JpaRepository<Zone, UUID> {
 
     @Query("SELECT z FROM Zone z WHERE NOT EXISTS(SELECT s FROM Scout s WHERE s.zone=z) ORDER BY z.zoneNumber")
     List<Zone> findFreeZones();
+
+    Optional<Zone> findByZoneNumber(int zoneNumber);
 }

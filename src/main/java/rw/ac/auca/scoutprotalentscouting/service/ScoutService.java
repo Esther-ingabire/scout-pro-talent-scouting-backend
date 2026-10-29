@@ -97,4 +97,49 @@ public class ScoutService {
         return scoutRepo.findBySportName(name);
     }
 
+    public String addSport(UUID scoutId, UUID sportId){
+        Scout scout = scoutRepo.findById(scoutId).orElse(null);
+        if (scout == null) {
+            return "The scout with that id does not exist";
+        }
+        Sport sport = sportRepo.findById(sportId).orElse(null);
+        if(sport == null){
+            return "That sport does not exist";
+        }
+        boolean alreadyHas = false;
+        for (Sport s: scout.getSports()) {
+            if (s.getId().equals(sport.getId())){
+                alreadyHas = true;
+                break;
+            }
+        }
+        if (alreadyHas){
+            return "The scout already has that sport";
+        }
+        scout.getSports().add(sport);
+        scoutRepo.save(scout);
+        return "Sport added to the scout";
+    }
+
+    public String changeZone(UUID scoutId, int zoneNumber){
+        Scout scout = scoutRepo.findById(scoutId).orElse(null);
+        if(scout == null){
+            return "The scout with that id does not exist";
+        }
+        Zone zone = zoneRepo.findByZoneNumber(zoneNumber).orElse(null);
+        if(zone == null){
+            return "The zone with that zoneNumber does not exist";
+        }
+
+        boolean alreadyThere = scout.getZone() != null
+                && scout.getZone().getZoneNumber() == zoneNumber;
+        if(scoutRepo.existsByZone(zone) && !alreadyThere){
+            return "That zone is taken by another scout";
+        }
+        scout.setZone(zone);
+        scoutRepo.save(scout);
+        return "Zone changed successfully";
+
+    }
+
 }
