@@ -49,5 +49,10 @@ public class AthleteService {
         }
         athleteRepo.deleteById(id);
         return "Athlete deleted successfully";
+
+    }
+
+    public List<Athlete> findByPosition(String position){
+        return athleteRepo.findByPositionIgnoreCaseOrderByLastNameAsc(position);
     }
 }

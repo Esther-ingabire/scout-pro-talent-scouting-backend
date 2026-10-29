@@ -10,6 +10,7 @@ import rw.ac.auca.scoutprotalentscouting.repository.AthleteRepository;
 import rw.ac.auca.scoutprotalentscouting.repository.ScoutRepository;
 import rw.ac.auca.scoutprotalentscouting.repository.TrialRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -85,5 +86,13 @@ public class TrialService {
         }
         trialRepo.deleteById(id);
         return "Trial deleted successfully";
+    }
+
+    public List<Trial> findByStatus(TrialStatus status){
+        return trialRepo.findByStatusOrderByTrialDateAsc(status);
+    }
+
+    public List<Trial> findBetween(LocalDate start, LocalDate end){
+        return trialRepo.findByTrialDateBetweenOrderByTrialDateAsc(start, end);
     }
 }

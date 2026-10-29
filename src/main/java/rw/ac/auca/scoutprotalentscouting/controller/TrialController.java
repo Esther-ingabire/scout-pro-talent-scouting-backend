@@ -6,8 +6,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rw.ac.auca.scoutprotalentscouting.model.Trial;
+import rw.ac.auca.scoutprotalentscouting.model.TrialStatus;
 import rw.ac.auca.scoutprotalentscouting.service.TrialService;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @RestController
@@ -33,6 +35,19 @@ public class TrialController {
     @GetMapping(value = "/all")
     public ResponseEntity<?> getAllTrials(){
         return new ResponseEntity<>(trialServ.getAllTrials(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/by-status")
+    public ResponseEntity<?>byStatus(@RequestParam TrialStatus status){
+        return new ResponseEntity<>(trialServ.findByStatus(status), HttpStatus.OK);
+    }
+
+    @GetMapping(value ="/between")
+    public ResponseEntity<?>between(@RequestParam String start, @RequestParam String end){
+        LocalDate startDate = LocalDate.parse(start);
+        LocalDate endDate = LocalDate.parse(end);
+
+        return new ResponseEntity<>(trialServ.findBetween(startDate, endDate), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")

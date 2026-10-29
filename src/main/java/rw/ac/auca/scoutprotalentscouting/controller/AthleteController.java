@@ -29,6 +29,11 @@ public class AthleteController {
         return new ResponseEntity<>(athleteServ.getAllAthletes(), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/by-position")
+    public ResponseEntity<?>byPosition(@RequestParam String position){
+        return new ResponseEntity<>(athleteServ.findByPosition(position), HttpStatus.OK);
+    }
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<?>getAthleteId(@PathVariable UUID id){
         Athlete athlete = athleteServ.getAthleteById(id);
