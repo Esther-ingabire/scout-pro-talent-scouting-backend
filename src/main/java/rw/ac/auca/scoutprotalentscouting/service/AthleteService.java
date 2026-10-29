@@ -55,4 +55,10 @@ public class AthleteService {
     public List<Athlete> findByPosition(String position){
         return athleteRepo.findByPositionIgnoreCaseOrderByLastNameAsc(position);
     }
+
+
+    public List<Athlete> findOfScout(UUID scoutId){
+        return athleteRepo.findOfScout(scoutId);
+
+    }
 }

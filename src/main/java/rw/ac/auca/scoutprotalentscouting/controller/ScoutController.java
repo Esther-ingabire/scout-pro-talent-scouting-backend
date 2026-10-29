@@ -35,6 +35,11 @@ public class ScoutController {
         return new ResponseEntity<>(scoutServ.getAllScouts(), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/by-sport")
+    public ResponseEntity<?>bySport(@RequestParam String name){
+        return new ResponseEntity<>(scoutServ.findBySportName(name), HttpStatus.OK);
+    }
+
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<?> getScoutById(@PathVariable UUID id){

@@ -32,6 +32,11 @@ public class SportController {
         return new ResponseEntity<>(sportServ.getAllSports(), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/unused")
+    public ResponseEntity<?>unused(){
+        return new ResponseEntity<>(sportServ.findUnused(), HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
 
     public ResponseEntity<?> getSportById(@PathVariable UUID id){

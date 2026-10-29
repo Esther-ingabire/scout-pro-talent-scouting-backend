@@ -93,4 +93,8 @@ public class ScoutService {
         return "Scout deleted successfully";
     }
 
+    public List<Scout> findBySportName(String name){
+        return scoutRepo.findBySportName(name);
+    }
+
 }

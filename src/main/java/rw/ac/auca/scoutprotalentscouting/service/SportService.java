@@ -46,4 +46,9 @@ public class SportService {
     }
 
 
+    public List<Sport> findUnused(){
+        return sportRepo.findUnused();
+    }
+
+
 }

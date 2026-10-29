@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rw.ac.auca.scoutprotalentscouting.model.Athlete;
 import rw.ac.auca.scoutprotalentscouting.service.AthleteService;
+import rw.ac.auca.scoutprotalentscouting.service.ScoutService;
 
 import java.util.UUID;
 
@@ -14,6 +15,9 @@ import java.util.UUID;
 public class AthleteController {
     @Autowired
     private AthleteService athleteServ;
+
+    @Autowired
+    private ScoutService scoutServ;
 
     @PostMapping(value ="/save")
     public ResponseEntity<?> saveAthlete(@RequestBody Athlete athlete){
@@ -33,6 +37,13 @@ public class AthleteController {
     public ResponseEntity<?>byPosition(@RequestParam String position){
         return new ResponseEntity<>(athleteServ.findByPosition(position), HttpStatus.OK);
     }
+
+    @GetMapping(value = "/of-scout/{scoutId}")
+    public ResponseEntity<?> ofScout(@PathVariable UUID scoutId){
+        if (scoutServ.getScoutById(scoutId) ==  null){
+            return new ResponseEntity<>("The scout with that id does not exist",  HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(athleteServ.findOfScout(scoutId), HttpStatus.OK);    }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<?>getAthleteId(@PathVariable UUID id){

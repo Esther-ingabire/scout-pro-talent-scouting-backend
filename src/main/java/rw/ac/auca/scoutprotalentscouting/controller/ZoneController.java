@@ -30,6 +30,11 @@ public class ZoneController {
         return new ResponseEntity<>(zoneServ.getAllZones(), HttpStatus.OK);
     }
 
+    @GetMapping(value ="/free")
+    public ResponseEntity<?> free(){
+        return new ResponseEntity<>(zoneServ.findFreeZones(),HttpStatus.OK);
+    }
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<?> getZone(@PathVariable UUID id){
         Zone zone = zoneServ.getZoneById(id);
