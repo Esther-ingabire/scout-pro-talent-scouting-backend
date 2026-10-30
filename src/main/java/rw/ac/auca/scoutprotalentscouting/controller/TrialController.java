@@ -68,6 +68,18 @@ public class TrialController {
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/stats/by-status")
+    public ResponseEntity<?> statsByStatus(){
+        return new ResponseEntity<>(trialServ.countByStatus(), HttpStatus.OK);
+    }
+
+    @PatchMapping(value ="/cancel-day")
+    public ResponseEntity<?> cancelDay(@RequestParam UUID scoutId, @RequestParam String date){
+        String message = trialServ.cancelDay(scoutId, LocalDate.parse(date));
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
+
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<?> getTrialById(@PathVariable UUID id){
         Trial trial = trialServ.getTrialById(id);

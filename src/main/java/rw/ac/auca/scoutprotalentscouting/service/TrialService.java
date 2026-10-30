@@ -1,5 +1,6 @@
 package rw.ac.auca.scoutprotalentscouting.service;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rw.ac.auca.scoutprotalentscouting.model.Athlete;
@@ -131,8 +132,17 @@ public class TrialService {
         trial.setStatus(status);
         trialRepo.save(trial);
         return "Trial status updated successfully";
+    }
 
+    public List<Object[]> countByStatus(){
+        return trialRepo.countByStatus();
+    }
 
+    @Transactional
+    public String cancelDay(UUID scoutId, LocalDate date){
+        int count = trialRepo.withdrawByScoutAndDate(scoutId, date, TrialStatus.WITHDRAWN, TrialStatus.ASSESSED);
+
+        return count + "trials cancelled";
     }
 
 
