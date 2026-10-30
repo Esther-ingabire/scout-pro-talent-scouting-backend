@@ -8,6 +8,7 @@ import rw.ac.auca.scoutprotalentscouting.model.Trial;
 import rw.ac.auca.scoutprotalentscouting.model.TrialStatus;
 import rw.ac.auca.scoutprotalentscouting.repository.AthleteRepository;
 import rw.ac.auca.scoutprotalentscouting.repository.ScoutRepository;
+import rw.ac.auca.scoutprotalentscouting.repository.SkillScoreRepository;
 import rw.ac.auca.scoutprotalentscouting.repository.TrialRepository;
 
 import java.time.LocalDate;
@@ -23,6 +24,9 @@ public class TrialService {
     private AthleteRepository athleteRepo;
     @Autowired
     private ScoutRepository scoutRepo;
+
+    @Autowired
+    private SkillScoreRepository skillScoreRepo;
 
     public String saveTrial(Trial trial){
         if(trial.getAthlete() == null || trial.getScout() == null){
@@ -85,8 +89,12 @@ public class TrialService {
         return "Trial updated successfully";
     }
     public String deleteTrialById(UUID id){
-        if(!trialRepo.existsById(id)){
+        Trial trial = trialRepo.findById(id).orElse(null);
+        if(trial == null){
             return "The trial with that id does not exist";
+        }
+        if(skillScoreRepo.existsByTrial(trial)){
+            return "That trial has skill scores, delete them first";
         }
         trialRepo.deleteById(id);
         return "Trial deleted successfully";

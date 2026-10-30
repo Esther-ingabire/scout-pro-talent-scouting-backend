@@ -97,6 +97,9 @@ public class TrialController {
         if(message.equals("Trial deleted successfully")){
             return new ResponseEntity<>(message, HttpStatus.OK);
         }
+        if(message.equals("That trial has skill scores, delete them first")){
+            return new ResponseEntity<>(message, HttpStatus.CONFLICT);
+        }
         return new  ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
 }
