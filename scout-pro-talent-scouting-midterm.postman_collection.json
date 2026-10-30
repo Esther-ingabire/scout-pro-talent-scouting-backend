@@ -1,0 +1,411 @@
+{
+  "info": {
+    "_postman_id": "9c09f360-67ab-4791-966c-78c2f25ba0bb",
+    "name": "scout-pro-talent-scouting-backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54794636"
+  },
+  "item": [
+    {
+      "name": "A2",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "B1",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/athletes/by-position?position=striker",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "athletes",
+            "by-position"
+          ],
+          "query": [
+            {
+              "key": "position",
+              "value": "striker"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "B2",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/trials/by-status?status=INVITED",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "trials",
+            "by-status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "INVITED"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "B3",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/trials/between?start=2026-10-01&end=2026-10-31",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "trials",
+            "between"
+          ],
+          "query": [
+            {
+              "key": "start",
+              "value": "2026-10-01"
+            },
+            {
+              "key": "end",
+              "value": "2026-10-31"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C1",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/scouts/by-sport?name=ball",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "scouts",
+            "by-sport"
+          ],
+          "query": [
+            {
+              "key": "name",
+              "value": "ball"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C2",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C3",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/sports/unused",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "sports",
+            "unused"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C4",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D1",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"trialDate\": \"2026-10-01\",\r\n  \"status\": \"ASSESSED\",\r\n  \"venue\": \"Test\",\r\n  \"athlete\": { \"id\": \"5ea1dc2e-c898-40a2-acf0-cbce578da30c\" },\r\n  \"scout\": { \"id\": \"49f1fbb2-8ba5-46e9-a99f-598e226c353c\" }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/trials/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "trials",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D2",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"trialDate\": \"2026-10-25\",\r\n  \"status\": \"INVITED\",\r\n  \"venue\": \"Kigali Pelé Stadium\",\r\n  \"athlete\": { \"id\": \"772dbe9d-82ed-4110-af58-e46da2604f62\" },\r\n  \"scout\": { \"id\": \"ef02c6dc-cb09-423f-a26b-5da50363f323\" }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/trials/2754c483-7913-407d-8c8a-697a1e4e6381",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "trials",
+            "2754c483-7913-407d-8c8a-697a1e4e6381"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D3",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/scouts/37af7a24-44e6-44a0-9cc9-cbc9045918d8/sports/ea0c0922-c1a7-4662-8b14-20319b975870",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "scouts",
+            "37af7a24-44e6-44a0-9cc9-cbc9045918d8",
+            "sports",
+            "ea0c0922-c1a7-4662-8b14-20319b975870"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D4",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/scouts/49f1fbb2-8ba5-46e9-a99f-598e226c353c/zone?zoneNumber=4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "scouts",
+            "49f1fbb2-8ba5-46e9-a99f-598e226c353c",
+            "zone"
+          ],
+          "query": [
+            {
+              "key": "zoneNumber",
+              "value": "4"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E1",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"skill\": \"Speed\", \"comment\": \"Quick off the line\", \"score\": 70}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/skill-scores/save?trialId=2754c483-7913-407d-8c8a-697a1e4e6381",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "skill-scores",
+            "save"
+          ],
+          "query": [
+            {
+              "key": "trialId",
+              "value": "2754c483-7913-407d-8c8a-697a1e4e6381"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E2",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/skill-scores/athlete/ATH-0509",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "skill-scores",
+            "athlete",
+            "ATH-0509"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E3",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/trials/delete/d0704a93-e9c7-4dce-a6b9-0cbe8a09bd1f",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "trials",
+            "delete",
+            "d0704a93-e9c7-4dce-a6b9-0cbe8a09bd1f"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "F1",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/trials/stats/by-status",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "trials",
+            "stats",
+            "by-status"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "F2",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Bonus",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    }
+  ]
+}
