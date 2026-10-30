@@ -2,6 +2,8 @@ package rw.ac.auca.scoutprotalentscouting.service;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import rw.ac.auca.scoutprotalentscouting.model.Athlete;
 import rw.ac.auca.scoutprotalentscouting.model.Scout;
@@ -143,6 +145,10 @@ public class TrialService {
         int count = trialRepo.withdrawByScoutAndDate(scoutId, date, TrialStatus.WITHDRAWN, TrialStatus.ASSESSED);
 
         return count + "trials cancelled";
+    }
+
+    public Page<Trial> findPage(Pageable pageable){
+        return trialRepo.findAll(pageable);
     }
 
 

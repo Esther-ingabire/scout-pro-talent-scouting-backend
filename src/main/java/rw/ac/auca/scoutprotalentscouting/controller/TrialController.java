@@ -4,6 +4,8 @@ package rw.ac.auca.scoutprotalentscouting.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import rw.ac.auca.scoutprotalentscouting.model.Trial;
 import rw.ac.auca.scoutprotalentscouting.model.TrialStatus;
@@ -77,6 +79,18 @@ public class TrialController {
     public ResponseEntity<?> cancelDay(@RequestParam UUID scoutId, @RequestParam String date){
         String message = trialServ.cancelDay(scoutId, LocalDate.parse(date));
         return new ResponseEntity<>(message, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/page")
+    public ResponseEntity<?> getPage(@RequestParam int page,
+                                     @RequestParam int size,
+                                     @RequestParam String sort){
+        String[] parts = sort.split(",");
+        PageRequest pageable = PageRequest.of(
+                page,
+                size,
+                Sort.by(Sort.Direction.fromString(parts[1]), parts[0]));
+        return new ResponseEntity<>(trialServ.findPage(pageable), HttpStatus.OK);
     }
 
 

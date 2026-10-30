@@ -31,4 +31,8 @@ public interface TrialRepository extends JpaRepository<Trial, UUID> {
                                @Param("withdrawn") TrialStatus withdrawn,
                                @Param("assessed") TrialStatus assessed);
 
+
+    long countByStatus(TrialStatus status);
+    long countByTrialDate(LocalDate trialDate);
+
 }
