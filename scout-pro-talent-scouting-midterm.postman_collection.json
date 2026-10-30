@@ -9,10 +9,29 @@
     {
       "name": "A2",
       "request": {
-        "method": "GET",
+        "method": "POST",
         "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\":\"Football\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
         "url": {
-          "raw": ""
+          "raw": "http://localhost:8080/api/sports/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "sports",
+            "save"
+          ]
         }
       },
       "response": []
@@ -135,7 +154,17 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": ""
+          "raw": "http://localhost:8080/api/zones/free",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "zones",
+            "free"
+          ]
         }
       },
       "response": []
@@ -167,7 +196,18 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": ""
+          "raw": "http://localhost:8080/api/athletes/of-scout/49f1fbb2-8ba5-46e9-a99f-598e226c353c",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "athletes",
+            "of-scout",
+            "49f1fbb2-8ba5-46e9-a99f-598e226c353c"
+          ]
         }
       },
       "response": []
@@ -205,7 +245,7 @@
     {
       "name": "D2",
       "request": {
-        "method": "GET",
+        "method": "PATCH",
         "header": [],
         "body": {
           "mode": "raw",
@@ -217,7 +257,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8080/api/trials/2754c483-7913-407d-8c8a-697a1e4e6381",
+          "raw": "http://localhost:8080/api/trials/0ad41f20-00c6-45ba-91a3-0cc2b36913f5/status?status=REGISTERED",
           "protocol": "http",
           "host": [
             "localhost"
@@ -226,7 +266,14 @@
           "path": [
             "api",
             "trials",
-            "2754c483-7913-407d-8c8a-697a1e4e6381"
+            "0ad41f20-00c6-45ba-91a3-0cc2b36913f5",
+            "status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "REGISTERED"
+            }
           ]
         }
       },
@@ -388,10 +435,30 @@
     {
       "name": "F2",
       "request": {
-        "method": "GET",
+        "method": "PATCH",
         "header": [],
         "url": {
-          "raw": ""
+          "raw": "http://localhost:8080/api/trials/cancel-day?scoutId=49f1fbb2-8ba5-46e9-a99f-598e226c353c&date=2026-10-20",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "trials",
+            "cancel-day"
+          ],
+          "query": [
+            {
+              "key": "scoutId",
+              "value": "49f1fbb2-8ba5-46e9-a99f-598e226c353c"
+            },
+            {
+              "key": "date",
+              "value": "2026-10-20"
+            }
+          ]
         }
       },
       "response": []
@@ -402,7 +469,17 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": ""
+          "raw": "http://localhost:8080/api/dashboard/summary",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "dashboard",
+            "summary"
+          ]
         }
       },
       "response": []
